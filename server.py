@@ -6,7 +6,7 @@ Sirve la UI y expone la API REST para gestionar tareas.
 import json
 import uuid
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone
 
 from fastapi import FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
@@ -16,6 +16,8 @@ from typing import Optional
 
 # ── Config ──────────────────────────────────────────────
 TASKS_FILE = Path(__file__).parent / "tasks.json"
+HEARTBEAT_FILE = Path(__file__).parent / ".watcher_heartbeat"
+WATCHER_TIMEOUT = 5  # segundos sin heartbeat → watcher inactivo
 VALID_STATUSES = ["BACKLOG", "TODO", "DOING", "DONE", "REVIEW"]
 VALID_AGENTS = ["claude-code", "claude-api", "custom-script", "copilot", "script"]
 VALID_PRIORITIES = ["alta", "media", "baja"]
@@ -151,6 +153,14 @@ async def delete_task(task_id: str):
     tasks = [t for t in tasks if t["id"] != task_id]
     save_tasks(tasks)
     return {"deleted": task_id}
+
+
+@app.get("/api/watcher/status")
+async def watcher_status():
+    if not HEARTBEAT_FILE.exists():
+        return {"active": False}
+    age = (datetime.now() - datetime.fromtimestamp(HEARTBEAT_FILE.stat().st_mtime)).total_seconds()
+    return {"active": age < WATCHER_TIMEOUT}
 
 
 @app.get("/api/agents")

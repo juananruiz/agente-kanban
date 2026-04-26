@@ -17,32 +17,32 @@
   },
   {
     "id": "task-002",
-    "title": "Redactar borrador convenio en lectura fácil",
-    "description": "Adaptar la sección 3 del convenio colectivo a formato de lectura fácil según norma UNE",
-    "status": "BACKLOG",
-    "agent": "claude-api",
-    "prompt": "Adapta el siguiente texto del convenio colectivo a lectura fácil según la Norma UNE 153101:2018 EX, manteniendo todo el contenido legal pero simplificando el lenguaje",
+    "title": "Adaptar el capítulo IV de los Estatutos de la US a lectura fácil",
+    "description": "Adaptar el capítulo IV a lectura facil siguiendo la norma UNE",
+    "status": "REVIEW",
+    "agent": "claude-code",
+    "prompt": "Adapta el capítulo IV de los Estatutos de la US a lectura fácil según la Norma UNE 153101:2018 EX, manteniendo todo el contenido legal pero simplificando el lenguaje usando el skill existente",
     "context_files": [
-      "docs/convenio_seccion3.md"
+      "~/ai/agentus/agent/normativa/2025-05-20-estatutos-universidad-sevilla.md"
     ],
-    "priority": "media",
+    "priority": "alta",
     "created": "2026-04-26T10:05:00",
-    "updated": null,
-    "output": null,
+    "updated": "2026-04-26T14:31:49.641586",
+    "output": "[SIMULACIÓN] Claude Code ejecutaría: claude -p 'Adapta el capítulo IV de los Estatutos de la US a lectura fácil según la Norma UNE 153101:2018 EX, manteniendo todo el contenido legal pero simplificando el lenguaje usando el skill existente' '~/ai/agentus/agent/normativa/2025-05-20-estatutos-universidad-sevilla.md'",
     "error": null
   },
   {
     "id": "task-003",
     "title": "Generar informe de bolsas de trabajo",
     "description": "Extraer datos de las bolsas activas y generar un resumen en CSV",
-    "status": "TODO",
+    "status": "REVIEW",
     "agent": "custom-script",
     "prompt": "Ejecutar script de extracción de bolsas activas y generar CSV con columnas: id, categoría, num_candidatos, fecha_apertura, estado",
     "context_files": [],
     "priority": "baja",
     "created": "2026-04-25T14:30:00",
-    "updated": null,
-    "output": null,
+    "updated": "2026-04-26T14:29:35.356409",
+    "output": "[SIMULACIÓN] No se definió agent_script en la tarea",
     "error": null
   },
   {

@@ -27,6 +27,7 @@ from dispatcher import dispatch
 # ── Config ──────────────────────────────────────────────
 
 TASKS_FILE = Path(__file__).parent / "tasks.json"
+HEARTBEAT_FILE = Path(__file__).parent / ".watcher_heartbeat"
 POLL_INTERVAL = 2  # segundos entre comprobaciones
 USE_WATCHDOG = False  # cambiar a True si tienes watchdog instalado
 
@@ -34,6 +35,10 @@ USE_WATCHDOG = False  # cambiar a True si tienes watchdog instalado
 
 _last_hash = None
 _dispatching = set()  # IDs de tareas en proceso
+
+
+def _write_heartbeat():
+    HEARTBEAT_FILE.write_text(datetime.now().isoformat())
 
 
 def _file_hash() -> str:
@@ -51,6 +56,7 @@ def _check_and_dispatch():
     """Busca tareas en TODO y las despacha."""
     global _last_hash
 
+    _write_heartbeat()
     current_hash = _file_hash()
     if current_hash == _last_hash:
         return  # sin cambios
@@ -83,6 +89,7 @@ def run_polling():
     """Polling simple: comprueba el archivo cada N segundos."""
     global _last_hash
     _last_hash = _file_hash()
+    _write_heartbeat()
 
     print(f"  👁️  Watcher activo (polling cada {POLL_INTERVAL}s)")
     print(f"     Vigilando: {TASKS_FILE.resolve()}")
