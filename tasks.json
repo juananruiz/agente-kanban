@@ -1,0 +1,64 @@
+[
+  {
+    "id": "task-001",
+    "title": "Refactorizar módulo de nóminas",
+    "description": "Separar la lógica de cálculo de retribuciones del módulo principal para mejorar testabilidad",
+    "status": "BACKLOG",
+    "agent": "claude-code",
+    "prompt": "Refactoriza src/nominas.py separando la lógica de cálculo en un módulo independiente calc_retribuciones.py con tests unitarios",
+    "context_files": [
+      "src/nominas.py"
+    ],
+    "priority": "alta",
+    "created": "2026-04-26T10:00:00",
+    "updated": null,
+    "output": null,
+    "error": null
+  },
+  {
+    "id": "task-002",
+    "title": "Redactar borrador convenio en lectura fácil",
+    "description": "Adaptar la sección 3 del convenio colectivo a formato de lectura fácil según norma UNE",
+    "status": "BACKLOG",
+    "agent": "claude-api",
+    "prompt": "Adapta el siguiente texto del convenio colectivo a lectura fácil según la Norma UNE 153101:2018 EX, manteniendo todo el contenido legal pero simplificando el lenguaje",
+    "context_files": [
+      "docs/convenio_seccion3.md"
+    ],
+    "priority": "media",
+    "created": "2026-04-26T10:05:00",
+    "updated": null,
+    "output": null,
+    "error": null
+  },
+  {
+    "id": "task-003",
+    "title": "Generar informe de bolsas de trabajo",
+    "description": "Extraer datos de las bolsas activas y generar un resumen en CSV",
+    "status": "TODO",
+    "agent": "custom-script",
+    "prompt": "Ejecutar script de extracción de bolsas activas y generar CSV con columnas: id, categoría, num_candidatos, fecha_apertura, estado",
+    "context_files": [],
+    "priority": "baja",
+    "created": "2026-04-25T14:30:00",
+    "updated": null,
+    "output": null,
+    "error": null
+  },
+  {
+    "id": "task-004",
+    "title": "Revisar estructura web RRHH",
+    "description": "Analizar la estructura actual de la web de RRHH y proponer mejoras de navegación",
+    "status": "DONE",
+    "agent": "claude-api",
+    "prompt": "Analiza esta estructura web de Recursos Humanos y sugiere mejoras de usabilidad y navegación",
+    "context_files": [
+      "docs/estructura_web.md"
+    ],
+    "priority": "alta",
+    "created": "2026-04-20T09:00:00",
+    "updated": "2026-04-20T09:15:00",
+    "output": "Análisis completado. Se sugieren 5 mejoras principales de navegación...",
+    "error": null
+  }
+]
